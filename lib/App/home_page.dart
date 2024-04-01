@@ -40,22 +40,18 @@ class _HomePageState extends State<HomePage> {
         // Crop the image
         final croppedFile = await ImageCropper().cropImage(
           sourcePath: imagePicked.path,
-          aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+
+          // aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
           compressQuality: 100,
           maxWidth: 1800,
           maxHeight: 1800,
           compressFormat: ImageCompressFormat.jpg,
           uiSettings: [
             AndroidUiSettings(
-              toolbarColor: Colors.black,
-              cropFrameStrokeWidth: 3,
+              toolbarColor: Colors.blue,
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.original,
               lockAspectRatio: false,
-              cropFrameColor: Colors.white,
-              dimmedLayerColor: Colors.grey[800],
-              activeControlsWidgetColor: const Color.fromARGB(255, 14, 101, 79),
-              showCropGrid: false,
             ),
             IOSUiSettings(
               minimumAspectRatio: 1.0,
@@ -173,16 +169,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        automaticallyImplyLeading: false,
         title: Text(
           'Add Images / Icon',
           style: TextStyle(
@@ -191,14 +178,17 @@ class _HomePageState extends State<HomePage> {
             fontFamily: 'DM_Sans',
           ),
         ),
-        centerTitle: true,
+        centerTitle: false,
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             child: Container(
-              height: 120,
+              height: 150,
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               width: double.infinity,
               decoration: BoxDecoration(
@@ -206,13 +196,13 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Text(
                     'Upload Image',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   GestureDetector(
@@ -224,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                       width: 180,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 14, 101, 79),
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(5)),
                       child: const Center(
                         child: Text(
